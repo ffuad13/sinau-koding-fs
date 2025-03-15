@@ -1,0 +1,26 @@
+import React from "react";
+
+const App = () => {
+	// return React.createElement("h1", null, "Hello, no JSX") //tanpa jsx
+	// return <h1>Hello, saya JSX</h1> //dengan jsx
+
+	const nama = 'Faizul'
+	const umur = '17'
+
+	const calculateSum = (a, b) => a + b
+
+	return (
+		<div>
+			{/* use curly bracket */}
+			<h1>Halo, saudara {nama}, umur anda sekarang {umur}</h1>
+			{/* operasi matematika */}
+			<p>2 + 3 = {2+3}</p>
+			{/* fungsi di jsx */}
+			<p>Jumlah dari pertambahan 10 dan 15 adalah: {calculateSum(5,10)}</p>
+			{/* ternary */}
+			<p>{umur >= 18 ? "Kamu adalah orang dewasa" : "Kamu masih bocil"}</p>
+		</div>
+	)
+}
+
+export default App
