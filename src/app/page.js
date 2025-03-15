@@ -1,4 +1,5 @@
 import React from "react";
+import HelloComponent, {LikeButton} from '@/app/components/myComponents'
 
 const App = () => {
 	// return React.createElement("h1", null, "Hello, no JSX") //tanpa jsx
@@ -72,6 +73,8 @@ const App = () => {
 			<h2>User List</h2>
 			<UserList users={dataUserFromDB}/>
 		</div>
+		<HelloComponent />
+		<LikeButton />
 		</>
 	)
 }
