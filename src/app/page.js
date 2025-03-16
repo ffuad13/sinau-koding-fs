@@ -8,22 +8,20 @@ export default function Home() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    /* fetch("/api")
-      .then((res) => {
-        console.log("res", res);
-        return res.json();
-      })
-      .then((data) => {
+    const fetchTodos = async () => {
+      try {
+        const res = await fetch("/api");
+        if (!res.ok) throw new Error("Failed to fetch todos");
+
+        const data = await res.json();
         console.log("Fetched Data:", data);
-        setTodos(data.todos);
-      })
-      .catch((error) => console.error("Error fetching todos:", error)) */;
-      async function fetchTodos() {
-        const res = await fetch('http://localhost:3000/api')
-        const data = await res.json()
-        console.log('first', data)
+        setTodos(data);
+      } catch (error) {
+        console.error("Error fetching todos:", error);
       }
-      fetchTodos()
+    };
+
+    fetchTodos();
   }, []);
 
   const addTodo = (newTodo) => {
