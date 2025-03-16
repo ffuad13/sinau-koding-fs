@@ -15,6 +15,8 @@ export default class TodoForm extends Component {
   }
 
   async handleSubmit(event) {
+    console.log('handle submit dijalankan')
+
     event.preventDefault();
     if (!this.state.text) return;
 
