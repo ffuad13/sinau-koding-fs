@@ -1,6 +1,7 @@
-import {ThemeProvider, ThemeSwitcher} from '@/app/commponents/hooksComponent'
 import { Geist, Geist_Mono } from "next/font/google";
-// import "./globals.css";
+import "./globals.css";
+import Navbar from "@/app/components/navbar";
+import WrapperRouter from '@/app/components/routerWrapper'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,15 +21,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ThemeProvider>
-          <header>
-            <ThemeSwitcher />
-          </header>
-        {children}
-        </ThemeProvider>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+					<Navbar />
+					{children}
       </body>
     </html>
   );
