@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 function ComplexForm() {
   const [formData, setFormData] = useState({
@@ -15,9 +15,14 @@ function ComplexForm() {
     comments: ''
   });
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
+    console.log('value', e.target.value)
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  }, [setFormData, formData]);
+  /* const handleChange = (e) => {
+    console.log('value', e.target.value)
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }; */
 
   const handleSubmit = (e) => {
     e.preventDefault();
