@@ -16,7 +16,6 @@ function ComplexForm() {
   });
 
   const handleChange = useCallback((e) => {
-    console.log('value', e.target.value)
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }, [setFormData, formData]);
   /* const handleChange = (e) => {
@@ -27,10 +26,10 @@ function ComplexForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form Data:', formData);
-    alert('Form submitted (check console)');
+    // alert('Form submitted (check console)');
   };
 
-  console.log("ComplexForm rendered"); // For tracking re-renders
+  // console.log("ComplexForm rendered"); // For tracking re-renders
 
   return (
     <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
