@@ -10,16 +10,17 @@
   "author": "Faizul",
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "latest",
     "eslint": "latest",
     "eslint-config-airbnb-base": "latest",
     "eslint-config-prettier": "latest",
     "eslint-plugin-import": "latest",
     "eslint-plugin-prettier": "latest",
+    "nodemon": "latest",
     "prettier": "latest"
   },
   "dependencies": {
+    "cors": "latest",
     "express": "latest",
-    "cors": "latest"
+    "mysql2": "^3.14.0"
   }
 }
