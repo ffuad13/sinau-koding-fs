@@ -19,8 +19,10 @@
     "prettier": "latest"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "cors": "latest",
     "express": "latest",
-    "mysql2": "^3.14.0"
+    "mysql2": "^3.14.1",
+    "validator": "^13.15.0"
   }
 }
