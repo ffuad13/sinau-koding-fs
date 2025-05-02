@@ -1,4 +1,6 @@
 const { ApiError } = require("./handlers")
+const jwt = require('jsonwebtoken')
+
 
 const validateToken = (req, res, next) => {
 	try {
@@ -6,19 +8,21 @@ const validateToken = (req, res, next) => {
 
 		const splittoken = token.split(" ")[1]
 
-		const secretToken = "ini-token"
-
 		if (!splittoken) {
 			// return res.status(401).send({message: "no token provided"})
 			throw new ApiError(401, "No token provided")
 		}
 
-		if (splittoken !== secretToken) {
+		const checkToken = jwt.verify(splittoken, process.env.JWT_SECRET)
+
+		if (!checkToken) {
 			// return res.status(403).send({message: "Invalid token, request forbidden"})
 			throw new ApiError(403, "Invalid token, request forbidden")
 		}
 
-			next()
+		req.user = checkToken
+
+		next()
 	} catch (error) {
 		next(error)
 	}

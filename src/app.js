@@ -3,6 +3,7 @@ const PORT = 3030
 const cors = require('cors');
 const db = require('./models/db')
 
+require('dotenv').config()
 
 const router = require('./routes/router');
 const todoRouter = require('./routes/todoRouter');
@@ -44,6 +45,6 @@ app.get('/api/testerror', (req, res, next) => {
 // 		message: 'route not found'
 // 	})
 // })
-// app.use(errorHandler)
+app.use(errorHandler)
 
 app.listen(PORT, () => {console.log('Server Running on port:' + PORT)});

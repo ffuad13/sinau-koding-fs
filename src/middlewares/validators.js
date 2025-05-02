@@ -2,6 +2,7 @@ const validator = require('validator')
 const { ApiError } = require('./handlers')
 const db = require('../models/db')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 
 const createUserValidator = (req, res, next) => {
@@ -34,18 +35,29 @@ const loginValidator = async (req, res, next) => {
 	const sql = 'SELECT * FROM `users` where email = ?'
 	const values = [email]
 
-	db.query(sql, values, (err, rows, fields) => {
-		const dataPassword = rows[0].password
+	const [rows, fields] = await db.promise().query(sql, values)
+	const userData = rows[0]
 
-		const comparePassword = bcrypt.compareSync(password, dataPassword)
-		if (!comparePassword) {
-			return res.status(400).send({
-				message: 'error, incorrect password'
-			})
-		}
+	if (!userData) {
+		throw new ApiError(404, 'Incorrect email. User not found')
+	}
 
-		next()
-	});
+	const dataPassword = userData.password
+	const comparePassword = bcrypt.compareSync(password, dataPassword)
+	if (!comparePassword) {
+		throw new ApiError(400, 'Incorrect Password')
+	}
+
+	const tokenSign = jwt.sign({id: userData.id, email: userData.email}, process.env.JWT_SECRET, {expiresIn: 3600})
+
+	req.token = tokenSign
+
+	next()
+
+	// db.query(sql, values, (err, rows, fields) => {
+
+	// 	next()
+	// });
 }
 
 module.exports = {createUserValidator, loginValidator}
