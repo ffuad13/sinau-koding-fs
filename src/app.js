@@ -2,6 +2,7 @@ const express = require('express');
 const PORT = 3030
 const cors = require('cors');
 const db = require('./models/db')
+const helmet = require('helmet')
 
 require('dotenv').config()
 
@@ -10,11 +11,14 @@ const todoRouter = require('./routes/todoRouter');
 const userRouter = require('./routes/userRouter')
 const logger = require('./middlewares/logger');
 const { errorHandler, ApiError, routeNotFound } = require('./middlewares/handlers');
+const { limiter } = require('./middlewares/limiter');
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(limiter)
+app.use(helmet())
 app.use(logger)
 
 app.use(cors({ origin: true, credentials: true }));
