@@ -1,7 +1,7 @@
 import React, {memo} from 'react'
 
 function ProductItem({ product }) {
-  console.log(`ProductItem ${product.id} rendered`) // For tracking re-renders
+  // console.log(`ProductItem ${product.id} rendered`) // For tracking re-renders
 
   return (
     <div className="bg-white shadow-md rounded-lg p-4">

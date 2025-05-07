@@ -3,6 +3,7 @@
 import ProductList from "@/components/ProductList";
 import ComplexForm from "@/components/ComplexForm";
 import { useState, useEffect, useMemo, useCallback } from "react";
+import { store } from "@/store/store";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -10,13 +11,14 @@ export default function Home() {
   const lalalala = "sbsbbsbsbsb"
 
   const fetchProducts = useCallback(async () => {
-    const res = await fetch('http://localhost:3030/products');
+    const res = await fetch('http://localhost:3040/products');
     const data = await res.json();
     setProducts(data);
   }, []);
 
   useEffect(() => {
     fetchProducts();
+    console.log("state", store.getState())
   }, [fetchProducts]);
 
   const memoizedProduct = useMemo(() => products, [products])
