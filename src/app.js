@@ -44,11 +44,12 @@ app.get('/api/testerror', (req, res, next) => {
 	}
 })
 
-// app.use('*', (req, res) => {
-// 	res.status(404).json({
-// 		message: 'route not found'
-// 	})
-// })
+app.use('/{*splat}', (req, res) => {
+
+	res.status(404).json({
+		message: `route not found`
+	})
+})
 app.use(errorHandler)
 
 app.listen(PORT, () => {console.log('Server Running on port:' + PORT)});

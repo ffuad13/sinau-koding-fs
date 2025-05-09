@@ -13,7 +13,7 @@ const createUser = async (req, res) => {
   await db.execute(sql, values);
 
 	res.status(201).send({
-		message: 'success'
+		message: 'Registartion Success'
 	})
 }
 
